@@ -15,8 +15,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://192.168.1.6:3000"],
-    credentials: true,
+    credentials: true
   })
 );
 app.use(express.json({ limit: "50mb" }));
@@ -44,7 +43,7 @@ app.use("/", userRouter);
 app.use("/", blogRouter);
 app.use("/", commentRouter);
 
-app.listen(process.env.PORT, "0.0.0.0", () => {
+app.listen(process.env.PORT, () => {
   console.log("Server running on port 5000");
 });
 
