@@ -19,7 +19,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cookieParser());
 app.use((req, res, next) => {
   if (
-    req.path === "/login" ||
+    //req.path === "/login" ||
     req.path === "/signup" ||
     req.path === "/getAllBlogs" ||
     req.path.startsWith("/blog") ||
