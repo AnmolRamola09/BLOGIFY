@@ -77,7 +77,7 @@ const Login = () => {
 
     const getUserData = async () => {
         try {
-            const res = await axios.get("blogifybackend-anmol-ramolas-projects.vercel.app/userData",{
+            const res = await axios.get("https://blogifybackend-anmol-ramolas-projects.vercel.app/userData",{
                 withCredentials: true,
             });
     
@@ -106,7 +106,7 @@ const Login = () => {
         
         try {
 
-            const res = await axios.post("blogifybackend-anmol-ramolas-projects.vercel.app/login",login, {
+            const res = await axios.post("https://blogifybackend-anmol-ramolas-projects.vercel.app/login",login, {
                 withCredentials: true,
             });
 

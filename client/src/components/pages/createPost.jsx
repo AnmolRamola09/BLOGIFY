@@ -109,7 +109,7 @@ const CreatePost = () => {
                 toast.warning("please upload the cover Image");
                 return;
             }
-            const final_url = await axios.post("blogifybackend-anmol-ramolas-projects.vercel.app/upload", {
+            const final_url = await axios.post("https://blogifybackend-anmol-ramolas-projects.vercel.app/upload", {
                 image_url: pic,
             }, {withCredentials:true});
     
@@ -120,7 +120,7 @@ const CreatePost = () => {
                 avatar: user.profileImageUrl,
             };
 
-            await axios.post("blogifybackend-anmol-ramolas-projects.vercel.app/create", updatedBlog, { withCredentials:true });
+            await axios.post("https://blogifybackend-anmol-ramolas-projects.vercel.app/create", updatedBlog, { withCredentials:true });
             toast.success("Blog created Successfully");
             setBlog(initialBlog);
             setPic("");

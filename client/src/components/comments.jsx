@@ -80,7 +80,7 @@ const Comments = ({ blog }) => {
     useEffect(() => {
         const getComments = async () => {
             try {
-                const res = await axios.get(`blogifybackend-anmol-ramolas-projects.vercel.app/comments/${blog._id}`);
+                const res = await axios.get(`https://blogifybackend-anmol-ramolas-projects.vercel.app/comments/${blog._id}`);
                 if(res.status === 200) {
                     setComments(res.data);
                 }
@@ -99,7 +99,7 @@ const Comments = ({ blog }) => {
     const AddComment = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("blogifybackend-anmol-ramolas-projects.vercel.app/comment", comment, { withCredentials: true });
+            const res = await axios.post("https://blogifybackend-anmol-ramolas-projects.vercel.app/comment", comment, { withCredentials: true });
             
             if (res.status === 200) {
                 toast.success("Comment added successfully");
@@ -114,7 +114,7 @@ const Comments = ({ blog }) => {
 
     const handleDeleteComment = async (id) => {
         try {
-            const res = await axios.delete(`blogifybackend-anmol-ramolas-projects.vercel.app/comment/${id}`, { withCredentials: true });
+            const res = await axios.delete(`https://blogifybackend-anmol-ramolas-projects.vercel.app/comment/${id}`, { withCredentials: true });
 
             if(res.status === 200){
                 toast.success("comment deleted successfully");

@@ -28,7 +28,7 @@ function App() {
     const getUserData = async () => {
       try {
         const res = await axios.get(
-          "blogifybackend-anmol-ramolas-projects.vercel.app/userData",
+          "https://blogifybackend-anmol-ramolas-projects.vercel.app/userData",
           {
             withCredentials: true,
           }

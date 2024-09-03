@@ -22,7 +22,7 @@ const NavBar = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post("blogifybackend-anmol-ramolas-projects.vercel.app/logout", {} , {withCredentials: true});
+      const res = await axios.post("https://blogifybackend-anmol-ramolas-projects.vercel.app/logout", {} , {withCredentials: true});
       setUser(null);
       setIsAuthenticated(false);
       toast.success(res.data.msg);
