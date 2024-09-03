@@ -27,9 +27,12 @@ function App() {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/userData", {
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "blogifybackend-anmol-ramolas-projects.vercel.app/userData",
+          {
+            withCredentials: true,
+          }
+        );
 
         if (!res) {
           setIsAuthenticated(false);

@@ -82,7 +82,7 @@ const UpdateBlog = () => {
     useEffect(() => {
         const getBlog = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/blog/${id}`);
+                const res = await axios.get(`blogifybackend-anmol-ramolas-projects.vercel.app/blog/${id}`);
                 setBlog(res.data);
                 
 
@@ -109,7 +109,7 @@ const UpdateBlog = () => {
     const handleUpdate = async () => {
         
         try {
-            await axios.post(`http://localhost:5000/update/${id}`, blog, { withCredentials:true });
+            await axios.post(`blogifybackend-anmol-ramolas-projects.vercel.app/update/${id}`, blog, { withCredentials:true });
             toast.success("Blog updated Successfully");
             setBlog(initialBlog);
             navigate(`/blog/${id}`);

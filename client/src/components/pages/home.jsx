@@ -19,7 +19,7 @@ const Home = () => {
     const fetchBlogs = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/getAllBlogs");
+        const response = await axios.get("blogifybackend-anmol-ramolas-projects.vercel.app/getAllBlogs");
         setPosts(response.data);
         setLoading(false);
 

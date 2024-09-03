@@ -92,7 +92,7 @@ const SignUp = () => {
             let imageURL = "";
 
             if(pic) {
-                const final_url = await axios.post("http://localhost:5000/uploadAvatar", {
+                const final_url = await axios.post("blogifybackend-anmol-ramolas-projects.vercel.app/uploadAvatar", {
                     image_url: pic,
                 });
                 imageURL = final_url.data.url;
@@ -108,7 +108,7 @@ const SignUp = () => {
 
 
 
-            const res = await axios.post("http://localhost:5000/signup",updatedSignup);
+            const res = await axios.post("blogifybackend-anmol-ramolas-projects.vercel.app/signup",updatedSignup);
 
             if(res.status === 200) {
                 toast.success(res.data.msg);

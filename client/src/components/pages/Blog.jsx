@@ -75,7 +75,7 @@ const Blog = () => {
         const getBlog = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get(`http://localhost:5000/blog/${id}`);
+                const res = await axios.get(`blogifybackend-anmol-ramolas-projects.vercel.app/blog/${id}`);
                 setBlog(res.data);
                 setLoading(false);
 
@@ -100,7 +100,7 @@ const Blog = () => {
     const deleteBlog = async () => {
         try {
             setLoading(true);
-            const res = await axios.delete(`http://localhost:5000/delete/${id}`, { withCredentials: true });
+            const res = await axios.delete(`blogifybackend-anmol-ramolas-projects.vercel.app/delete/${id}`, { withCredentials: true });
 
             if(res.status === 200){
                 setLoading(false);
