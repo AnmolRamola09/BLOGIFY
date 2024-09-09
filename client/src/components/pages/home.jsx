@@ -37,7 +37,7 @@ const Home = () => {
   const handleSubscribe = async () => {
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:5000/newsLetter", { email: newsLetter });
+      const res = await axios.post("https://blogifybackend-anmol-ramolas-projects.vercel.app/newsLetter", { email: newsLetter });
 
       if (res.status === 200) {
         setLoading(false);
