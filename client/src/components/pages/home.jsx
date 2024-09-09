@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import moment from "moment";
 import Loader from '../Loader';
+import { toast } from 'react-toastify';
 
 
 
@@ -12,6 +13,7 @@ const Home = () => {
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [newsLetter, setNewsLetter] = useState("");
 
   const navigate = useNavigate();
 
@@ -32,6 +34,23 @@ const Home = () => {
     fetchBlogs();
   }, []);
 
+  const handleSubscribe = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.post("http://localhost:5000/newsLetter", { email: newsLetter });
+
+      if (res.status === 200) {
+        setLoading(false);
+        toast.success("Subscribed successfully");
+        setNewsLetter("");
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.response.data.msg); 
+      console.log(error);
+    }
+  };
+
 
   return (
     <>
@@ -44,11 +63,11 @@ const Home = () => {
       <div className="mx-auto max-w-7xl px-2">
         <div className="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
           <p className="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10">
-            Resources and insights
+            Signup for latest updates
           </p>
           <p className="max-w-4xl text-base text-gray-600 md:text-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore veritatis voluptates
-            neque itaque repudiandae sint, explicabo assumenda quam ratione placeat?
+          Subscribe to our weekly newsLetter and stay updated on the latest trends,
+          and never miss out on any of our new blog post.
           </p>
           <div className="mt-6 flex w-full items-center space-x-2 md:w-1/3">
             <input
