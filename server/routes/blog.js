@@ -6,6 +6,7 @@ const {
   getBlog,
   updateBlog,
   deleteBlog,
+  likeBlog,
 } = require("../controller/blog-controller.js");
 
 const router = Router();
@@ -16,5 +17,6 @@ router.post("/create", createBlog);
 router.get("/blog/:id", getBlog);
 router.post("/update/:id", updateBlog);
 router.delete("/delete/:id", deleteBlog);
+router.put("/like/:id", likeBlog);
 
 module.exports = router;

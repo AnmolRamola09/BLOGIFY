@@ -6,6 +6,7 @@ import { Edit, Delete } from '@mui/icons-material';
 import { toast } from 'react-toastify';
 import Loader from '../Loader';
 import { UserContext } from '../../context/userContext';
+import Like from '../utils/Like';
 
 import Comments from '../comments';
 
@@ -65,7 +66,7 @@ const Blog = () => {
 
     const { id } = useParams();
 
-    const { user } = useContext(UserContext);
+    const { user, isAuthenticated } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -129,7 +130,11 @@ const Blog = () => {
                         <DeleteIcon color='error' style={{cursor: "pointer"}} onClick={deleteBlog} />
                     </>
                     :
-                    <></>
+                    <>{isAuthenticated?
+                        <><Like blogId={blog._id} initialLikes={blog.likedBy} /></>
+                        :
+                        <></>
+                    }</>
                 }
                 
             </Box>

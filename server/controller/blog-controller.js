@@ -85,6 +85,32 @@ const deleteBlog = async (req, res) => {
   }
 };
 
+const likeBlog = async (req, res) => {
+  try {
+    const blogId = await Blog.findById(req.params.id);
+    const userId = req.body.userId;
+
+    const blog = await Blog.findById(blogId);
+    if (!blog) {
+      return res.status(404).json({ msg: "Blog not found" });
+    }
+
+    const isLiked = blog.likedBy.includes(userId);
+
+    if (isLiked) {
+      blog.likedBy.splice(blog.likedBy.indexOf(userId), 1);
+    } else {
+      blog.likedBy.push(userId);
+    }
+
+    await blog.save();
+
+    return res.status(200).json({ msg: "Like updated successfully" });
+  } catch (error) {
+    return res.status(500).json({ msg: "Error updating like" });
+  }
+};
+
 module.exports = {
   uploadImage,
   createBlog,
@@ -92,4 +118,5 @@ module.exports = {
   getBlog,
   updateBlog,
   deleteBlog,
+  likeBlog,
 };

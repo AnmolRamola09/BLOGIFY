@@ -26,6 +26,10 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    likedBy: {
+      type: [String],
+      default: [],
+    },
   },
   {
     timestamps: true,
