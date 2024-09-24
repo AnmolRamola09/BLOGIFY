@@ -61,6 +61,8 @@ const loginAdmin = async (req, res) => {
       return res
         .cookie("token", token, {
           httpOnly: true,
+          sameSite: "None", // Ensure this is set correctly
+          secure: process.env.NODE_ENV === "production", // Set to true in production
         })
         .status(200)
         .json({ msg: "Login Successfull" });
