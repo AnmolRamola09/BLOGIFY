@@ -5,6 +5,7 @@ const userRouter = require("./routes/user.js");
 const blogRouter = require("./routes/blog.js");
 const commentRouter = require("./routes/comment.js");
 const newsLetterRouter = require("./routes/newsLetter.js");
+const adminRouter = require("./routes/admin.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const {
@@ -41,7 +42,10 @@ app.use((req, res, next) => {
     req.path.startsWith("/blog") ||
     req.path.startsWith("/comments") ||
     req.path === "/uploadAvatar" ||
-    req.path === "/newsLetter"
+    req.path === "/newsLetter" ||
+    req.path === "/signupAdmin" ||
+    req.path === "/loginAdmin" ||
+    req.path === "/admin/createNotification"
   ) {
     return next(); // Skip the authentication check for login and signup routes
   }
@@ -56,6 +60,7 @@ app.use("/", userRouter);
 app.use("/", blogRouter);
 app.use("/", commentRouter);
 app.use("/", newsLetterRouter);
+app.use("/", adminRouter);
 
 app.listen(process.env.PORT, () => {
   console.log("Server running on port 5000");
