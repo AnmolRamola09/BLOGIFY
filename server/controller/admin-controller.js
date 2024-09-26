@@ -115,33 +115,38 @@ const deleteUser = async (req, res) => {
       return res.status(404).json({ msg: "User not found" });
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+    try {
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      });
 
-    const mailOptions = {
-      from: `"BLOGIFY" <anmolubisoft@gmail.com>`,
-      to: user.email,
-      subject: "Account Deletion Notification",
-      text: `Dear ${user.fullName},
+      const mailOptions = {
+        from: `"BLOGIFY" <anmolubisoft@gmail.com>`,
+        to: user.email,
+        subject: "Account Deletion Notification",
+        text: `Dear ${user.fullName},
+  
+  We hope this message finds you well.
+  
+  We regret to inform you that your BLOGIFY account has been permanently deleted due to violation of our terms of service or policy.
+  
+  Please be assured that this decision was not made lightly, and we reviewed the situation thoroughly before reaching this conclusion. If you believe this action was taken in error or if you have any questions, feel free to contact us within 14 days of receiving this notification.
+  
+  We understand this may be disappointing news, and we apologize for any inconvenience caused. Thank you for being a part of BLOGIFY.
+  
+  Sincerely,
+  The BLOGIFY Team`,
+      };
 
-We hope this message finds you well.
+      await transporter.sendMail(mailOptions);
+    } catch (emailError) {
+      console.log("Error sending email:", emailError.message);
+    }
 
-We regret to inform you that your BLOGIFY account has been permanently deleted due to violation of our terms of service or policy.
-
-Please be assured that this decision was not made lightly, and we reviewed the situation thoroughly before reaching this conclusion. If you believe this action was taken in error or if you have any questions, feel free to contact us within 14 days of receiving this notification.
-
-We understand this may be disappointing news, and we apologize for any inconvenience caused. Thank you for being a part of BLOGIFY.
-
-Sincerely,
-The BLOGIFY Team`,
-    };
-
-    await transporter.sendMail(mailOptions);
     await User.findByIdAndDelete(id);
     return res.status(200).json({ msg: "Account Deleted Successfully" });
   } catch (error) {
@@ -158,33 +163,38 @@ const deleteBlog = async (req, res) => {
       return res.status(404).json({ msg: "Blog not found" });
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+    try {
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      });
 
-    const mailOptions = {
-      from: `"BLOGIFY" <anmolubisoft@gmail.com>`,
-      to: blog.createdBy,
-      subject: "Blog Deletion Notification",
-      text: `Dear User,
+      const mailOptions = {
+        from: `"BLOGIFY" <anmolubisoft@gmail.com>`,
+        to: blog.createdBy,
+        subject: "Blog Deletion Notification",
+        text: `Dear User,
+  
+  We hope this message finds you well.
+  
+  We regret to inform you that your blog post titled "${blog.title}" has been permanently removed from BLOGIFY due to a violation of our terms of service or community guidelines.
+  
+  Please be assured that this decision was made after careful consideration, and the content of your blog post was reviewed thoroughly. If you believe this action was taken in error or if you have any questions, feel free to reach out to us within 14 days of receiving this notification.
+  
+  We understand that this may be disappointing news, and we sincerely apologize for any inconvenience caused. Thank you for your understanding and for being a part of the BLOGIFY community.
+  
+  Sincerely,
+  The BLOGIFY Team`,
+      };
 
-We hope this message finds you well.
+      await transporter.sendMail(mailOptions);
+    } catch (emailError) {
+      console.log("Error sending email:", emailError.message);
+    }
 
-We regret to inform you that your blog post titled "${blog.title}" has been permanently removed from BLOGIFY due to a violation of our terms of service or community guidelines.
-
-Please be assured that this decision was made after careful consideration, and the content of your blog post was reviewed thoroughly. If you believe this action was taken in error or if you have any questions, feel free to reach out to us within 14 days of receiving this notification.
-
-We understand that this may be disappointing news, and we sincerely apologize for any inconvenience caused. Thank you for your understanding and for being a part of the BLOGIFY community.
-
-Sincerely,
-The BLOGIFY Team`,
-    };
-
-    await transporter.sendMail(mailOptions);
     await Blog.findByIdAndDelete(req.body._id);
     return res.status(200).json({ msg: "Blog Deleted Successfully" });
   } catch (error) {
