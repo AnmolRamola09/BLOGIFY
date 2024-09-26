@@ -17,7 +17,7 @@ const app = express();
 
 const allowedOrigins = [
   "https://blogifyfrontend-anmol-ramolas-projects.vercel.app",
-  "https://blogify-admin-git-main-anmol-ramolas-projects.vercel.app",
+  "https://blogify-admin-anmol-ramolas-projects.vercel.app",
 ];
 
 app.use(
