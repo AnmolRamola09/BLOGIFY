@@ -67,7 +67,7 @@ export default function DashboardOverview() {
       }
     };
     fetchData();
-  }, [notifications, setUnread]);
+  }, [setUnread]);
 
   // Filter users who joined between these dates
   const usersJoinedInLastMonth = filterUsersByDate(users, getOneMonthAgoDate(), getTodayDate());
